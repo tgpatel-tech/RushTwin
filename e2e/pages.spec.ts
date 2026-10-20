@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('GitHub Pages: public demo, replay, refresh, assets, and imported project', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  page.on('response', response => { if(response.status()>=400) errors.push(`${response.status()} ${response.url()}`); });
+  await page.goto('/RushTwin/#/demo');
+  await page.getByRole('button', { name: 'Run Baseline', exact: true }).click();
+  await page.getByLabel('Playback speed').selectOption('0');
+  await page.getByRole('button', { name: 'Test a Change', exact: true }).click();
+  await page.getByRole('button', { name: 'Apply Experiment', exact: true }).click();
+  await page.getByRole('button', { name: 'Replay Same Rush', exact: true }).click();
+  await page.getByRole('button', { name: 'Compare the results', exact: true }).click();
+  await expect(page).toHaveURL(/\/RushTwin\/#\/project\/demo\/compare$/);
+  await expect(page.getByText('✓ Same customers. Same arrivals. Same order mix. Same seed.')).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('No additional workers were added.')).toBeVisible();
+  await page.goto('/RushTwin/#/project/demo/import');
+  await expect(page.getByRole('link', {name:'Download Sample CSV'})).toHaveAttribute('href','/RushTwin/samples/sample_rush.csv');
+  const csv=await page.request.get('/RushTwin/samples/sample_rush.csv');
+  expect(csv.ok()).toBe(true);
+  expect(await csv.text()).toContain('order_id,arrival_time,order_type');
+  await page.locator('input[type=file]').setInputFiles('public/samples/sample_rush.csv');
+  await page.getByRole('button',{name:'Validate Data'}).click();
+  await page.getByRole('button',{name:'Continue',exact:true}).click();
+  await page.getByRole('button',{name:'Create Replay Scenario'}).click();
+  await expect(page.getByLabel('Scenario name')).toHaveValue('Imported · sample_rush');
+  await page.reload();
+  await expect(page.getByLabel('Scenario name')).toHaveValue('Imported · sample_rush');
+  await page.getByRole('button',{name:'Run Rush',exact:true}).click();
+  await page.getByLabel('Playback speed').selectOption('0');
+  await expect(page.getByText('90 / 90',{exact:true})).toBeVisible();
+  await page.goto('/RushTwin/#/how-it-works');
+  await expect(page.getByRole('heading',{name:'A real engine. Not just an animation.'})).toBeVisible();
+  expect(errors).toEqual([]);
+});

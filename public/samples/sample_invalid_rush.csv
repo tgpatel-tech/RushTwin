@@ -1,0 +1,7 @@
+order_id,arrival_time,order_type
+001,07:00:00,drink
+001,07:00:30,both
+002,not-a-time,food
+003,,drink
+004,07:01:00,unknown
+005,07:02:00,both
