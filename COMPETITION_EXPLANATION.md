@@ -1,37 +1,48 @@
-# Congressional App Challenge explanation guide
+# RushTwin: project explanation
 
-RushTwin models a practical problem: a team can look adequately staffed overall while one station accumulates most of the waiting. Changing where a worker is assigned can matter as much as adding staff.
+**Live app:** https://tgpatel-tech.github.io/RushTwin/
+**Demo:** https://tgpatel-tech.github.io/RushTwin/#/demo
 
-The application uses discrete-event simulation: an event heap selects the next arrival or service completion. The binary heap keeps the smallest `(time, sequence)` at the root and restores ordering after insertion/removal in logarithmic time. FIFO queues track waiting tasks; worker counts cap simultaneous services. Seeded service distributions model variation.
+## The problem
 
-A fixed RunDemand preserves customer identities, arrival times, types, and the seed. Customer/station sub-seeds preserve service characteristics across staffing changes. Dependency tracking lets Drink and Food proceed independently while Pickup waits for both. Time-weighted queue area integrates queue length, and utilization divides busy effort by available worker time. Bottlenecks are explained using measured delay and capacity evidence rather than an invented score.
+A service business can have several people working and still get backed up at one station. Changing worker allocation during a rush is difficult to test fairly because the next rush may have different customers and different arrival times.
 
-## Demonstration
+RushTwin makes that experiment repeatable. It models the workflow, records the demand, and replays it under a different setup.
 
-Open `/demo`, run the baseline, watch Drinks queue, pause and inspect a customer, finish the run, apply the staffing experiment, replay, and compare. Show the unchanged total workers and same-demand statement. Explain any deterioration, such as increased Order waiting, alongside the improvement.
+## The demo
 
-## What was custom-built
+The café starts with five workers: two at Order and one each at Drinks, Food, and Pickup. Customers place orders, Drinks and Food can run in parallel, and Pickup waits for the required preparation tasks.
 
-Event heap, FIFO structure, seeded random generator, distribution sampling, arrival generation, dependency contraction, service/capacity logic, replay, metrics, playback reconstruction, and bottleneck ranking.
+The experiment moves one worker from Order to Drinks. The number of workers stays at five. Both scenarios use the same arrival times, order types, and customer-specific service randomness. The comparison shows what improved, what worsened, and where the bottleneck moved.
 
-## Supporting libraries
+## What happens under the interface
 
-React/TypeScript/Vite/Tailwind for the app; XYFlow for the graph; Zustand for state; Dexie for IndexedDB; Recharts for charts; Papa Parse for CSV; Zod for schema validation; Lucide for icons; Vitest/Testing Library/Playwright for tests. No existing discrete-event simulation library is used.
+1. Generated arrivals follow a seeded Poisson process, or an imported CSV supplies a fixed arrival schedule.
+2. A binary min-heap selects the next event by time, then insertion order. The simulation jumps to that event instead of stepping through every millisecond.
+3. Tasks join FIFO queues. Each worker handles one service at a time.
+4. Dependency tracking allows independent branches and makes joins wait for all required tasks.
+5. Recorded task times produce the metrics and the playback state. Browser frame rate cannot change the simulation result.
 
-See SIMULATION_ENGINE.md for formulas and ARCHITECTURE.md for implementation boundaries. Review every system personally before presenting it. AI assistance must be disclosed according to the applicable competition rules; this repository does not make an eligibility determination.
+## Why replay is fair
 
-## MY PERSONAL INSPIRATION
+A `RunDemand` record preserves each customer ID, arrival time, order type, and the seed. Service randomness is derived from the seed plus customer and station IDs. Changing staffing therefore changes when work happens without randomly changing how much work that same customer needs at the same station.
 
-[Student: add your own true experience and motivation.]
+## How the measurements work
 
-## WHAT I LEARNED
+- **Average queue:** integrate queue length over time, then divide by the run duration.
+- **Utilization:** divide busy worker seconds by worker count × run duration.
+- **Throughput:** completed customers per hour, including time to finish remaining work after arrivals stop.
+- **P90 wait:** a deterministic, interpolated percentile of completed-customer queue delay.
+- **Bottleneck:** the station with the largest accumulated queue delay, supported by queue and utilization evidence.
 
-[Student: explain what you personally learned and can demonstrate.]
+Parallel tasks can overlap. Summed queue delay and processing effort are not the same as elapsed time in the system. The app and [engine documentation](SIMULATION_ENGINE.md) explain this distinction.
 
-## HARDEST TECHNICAL CHALLENGE
+## Application-specific code and supporting libraries
 
-[Student: describe a challenge you personally investigated and resolved.]
+The event heap, FIFO queue, random generator, distributions, routing, capacity model, replay, playback reconstruction, and metrics are application-specific code. React and XYFlow provide the interface; Recharts provides charts; Dexie provides browser storage; Papa Parse and Zod support import and validation.
 
-## WHAT I WOULD ADD IN VERSION 2
+OpenAI Codex contributed substantially to implementation and testing. See [AI usage](AI_USAGE.md) for the disclosure. Describing the algorithms here is not a claim of unaided authorship or proof of personal understanding.
 
-[Student: choose future improvements and explain the tradeoffs.]
+## Personal explanation
+
+The personal story, learning examples, and exact contribution record belong in the [submission worksheet](docs/SUBMISSION_WORKSHEET.md). They have not been invented for this guide.

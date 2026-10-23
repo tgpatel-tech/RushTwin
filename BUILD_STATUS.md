@@ -34,11 +34,11 @@ Implemented: desktop canvas/inspector/results layout, tablet inspector overlay, 
 
 ## TESTING
 
-25 unit/component tests and 2 multi-step Chromium E2E tests pass. Typecheck and ESLint pass. Production build passes with route-level code splitting. See TESTING.md for the exercised paths and browser limitations.
+25 unit/component tests, 2 root-hosted Chromium E2E journeys, and the separate GitHub Pages browser journey have passed in the development environment. Typecheck and ESLint pass. Production build passes with route-level code splitting. See TESTING.md for the exercised paths and browser limitations.
 
 ## DOCUMENTATION
 
-README, ARCHITECTURE, SIMULATION_ENGINE, COMPETITION_EXPLANATION, AI_USAGE, TESTING, and this status file are provided. Student personal-story/authorship sections are intentionally left for truthful completion.
+README, ARCHITECTURE, SIMULATION_ENGINE, COMPETITION_EXPLANATION, AI_USAGE, TESTING, and this status file are provided. Personal inspiration, contribution, and testing records are collected in docs/SUBMISSION_WORKSHEET.md for truthful completion.
 
 ## KNOWN ISSUES / LIMITATIONS
 
@@ -47,8 +47,8 @@ README, ARCHITECTURE, SIMULATION_ENGINE, COMPETITION_EXPLANATION, AI_USAGE, TEST
 - Very large workloads beyond the validated 1,000-customer/20-station target can occupy the main thread; a Web Worker and automatic staffing search are not implemented.
 - Project exports omit run histories. Browser storage can be cleared or quota-limited; export backups.
 - Connection tokens indicate recent recorded transfers and do not model travel durations. Queue charts are sampled for display; metrics use exact timings.
-- Standalone hosting configuration and website/source archives are provided. No hosting account or domain has been connected, and public deployment is not claimed. See deployment/README.md.
+- The owner has confirmed the GitHub Pages website opens. Saved simulations remain browser-local; public demo links create a separate demo for each visitor.
 
 ## GITHUB PAGES
 
-A Pages-specific build, subdirectory-safe assets, hash routing, production browser test, and Actions deployment workflow are included. Public availability must be verified after GitHub completes deployment; repository settings may require an owner action.
+A Pages-specific build, subdirectory-safe assets, hash routing, production browser test, and Actions deployment workflow are included. The owner confirmed the public website works. The Pages browser test validates the demo, comparison, refresh, and import under the hosted path.

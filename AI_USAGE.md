@@ -1,31 +1,25 @@
-# AI usage disclosure — complete before submission
+# AI usage
 
-## AI tools used
+I used OpenAI Codex extensively while developing RushTwin. AI helped generate and debug substantial parts of the application, so I do not describe it as written entirely without AI assistance.
 
-OpenAI Codex assisted in generating this implementation from the supplied RushTwin specification. Do not describe this repository as coded without AI.
+## Where AI contributed
 
-## Tasks AI assisted with
+- Architecture and TypeScript data models.
+- The event heap, queues, seeded randomness, service logic, parallel dependencies, replay, and metrics.
+- The workflow editor, playback, charts, comparison, and CSV import.
+- Browser storage, validation, deployment configuration, and documentation.
+- Automated test creation, execution, and debugging.
 
-Architecture, TypeScript data modeling, discrete-event engine, UI implementation, deterministic replay, CSV validation, persistence, automated tests, debugging, styling, and documentation.
+The project uses supporting libraries listed in the README. Its simulation logic is application-specific, but that does not mean the implementation was written without AI.
 
-## Student-written / student-understood systems
+## What has been checked
 
-[Student: identify code you wrote personally and systems you have studied, can explain, and can modify independently. These are different claims; list them accurately.]
+The coding assistant ran unit/component tests, production browser tests, and the GitHub Pages browser check in the development environment. The repository includes those tests so someone else can run them too.
 
-## Major changes personally reviewed
+I confirmed that the deployed GitHub website opens. A complete record of my own code review, changes, and hands-on testing has not yet been added. The assistant's test results should not be represented as tests I personally performed.
 
-[Student: record files, logic, and assumptions you personally reviewed.]
+## Personal review before submission
 
-## Testing personally performed
+My submission needs to describe the work I actually did and the systems I can explain. The [submission worksheet](docs/SUBMISSION_WORKSHEET.md) separates personal inspiration, code changes, learning, and testing so I can record those accurately.
 
-Automated tests were authored and run by the coding assistant in this workspace. This does not establish that the student personally tested the app.
-
-[Student: record your own testing, dates, results, and independent verification.]
-
-## Areas where AI-generated code was modified
-
-[Student: describe your actual modifications and why you made them.]
-
-## Submission review
-
-Verify the current rules for your district and competition year. Complete personal explanations truthfully and retain this disclosure. No personal origin story, authorship claim, or eligibility assurance has been invented.
+This file records known AI assistance. It is not a statement that the project meets a particular competition's AI, originality, or eligibility rules. Those need to be checked against the current official rules and my district's instructions before submission.

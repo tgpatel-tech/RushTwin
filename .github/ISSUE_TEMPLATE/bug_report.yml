@@ -1,0 +1,33 @@
+name: Bug report
+description: Report an incorrect result or something that does not work.
+title: "Bug: "
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the screen, actions, and anonymous sample inputs needed to see the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Chrome on Windows, Safari on iPhone, etc.
+  - type: textarea
+    id: simulation
+    attributes:
+      label: Simulation details
+      description: Seed, worker counts, service settings, and relevant screenshots. Do not attach private customer data.
