@@ -2,13 +2,11 @@
 
 Repository: https://github.com/tgpatel-tech/RushTwin
 
-Expected website address after successful deployment:
+Website:
 https://tgpatel-tech.github.io/RushTwin/
 
-Public demo for reviewers:
+Public demo:
 https://tgpatel-tech.github.io/RushTwin/#/demo
-
-These are expected addresses, not proof of a completed deployment.
 
 ## One-time repository setting
 
@@ -38,8 +36,6 @@ npm run test:e2e:pages
 
 Playwright uses an installed Chromium, or run `npx playwright install chromium`. `npm run build:pages` builds the site without launching tests. The Pages test server uses port 4175.
 
-## Challenge submission
+## Sharing projects
 
-Use the public website/demo link for trying the application and the repository link for reviewing source, subject to your district's current submission requirements. Open both in a signed-out browser before submitting. A working GitHub website does not itself complete your Congressional App Challenge entry.
-
-Saved projects remain browser-local. Private project URLs do not share data with judges; the public demo creates its own project for each visitor. Export a `.rushtwin.json` file if you want to share a specific custom simulation. Complete the truthful AI_USAGE.md and COMPETITION_EXPLANATION.md student sections before submission.
+Saved projects stay in the browser. Use the public demo for a shared starting point, or export a `.rushtwin.json` file to share a custom project.

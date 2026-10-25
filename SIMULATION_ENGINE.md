@@ -51,7 +51,7 @@ RunDemand includes seed, horizon, customer IDs, exact arrival timestamps, and or
 
 Queue charts sample recorded visits for rendering; all reported time-weighted metrics use exact event timings, never chart samples. Comparison curves use equal absolute simulation times.
 
-## Required examples
+## Timing examples
 
 One worker, two-second fixed service, arrivals 0/1/2: starts 0/2/4, finishes 2/4/6, waits 0/1/2, average wait 1. With a six-second horizon utilization is 100%, queue area is 3 worker-seconds, average queue is 0.5, and throughput is 1,800/hour.
 

@@ -9,9 +9,9 @@ Vitest runs unit and component tests in jsdom. The Playwright suite starts/reuse
 ## Engine and input coverage
 
 - Binary heap ordering and stable event ties; FIFO compaction.
-- Mandatory 0/1/2-arrival, two-second service example, exact waits, queue area, utilization, P90, throughput.
+- 0/1/2-arrival, two-second service example, exact waits, queue area, utilization, P90, throughput.
 - Multiple workers; zero workers and unfinished tasks; empty demand.
-- Mandatory parallel join, deterministic repeated execution, staffing replay preserving demand and individual service durations.
+- parallel join, deterministic repeated execution, staffing replay preserving demand and individual service durations.
 - Seeded sequences; fixed, uniform, normal, triangular distributions; piecewise Poisson demand; percentiles.
 - Cycle/disconnection/configuration validation; CSV valid/invalid rows, malformed CSV, timestamps, project schema/version.
 - 1,000-customer/20-station engine case.
@@ -25,11 +25,11 @@ The browser journeys cover project creation using Café Rush, run/pause/resume/M
 
 Inspect desktop and mobile screenshots; check keyboard focus, dialog close, long names, zero-worker warning, and full results tables. Charts have accessible descriptions and station data tables; timeline cells expose counts on focus/hover. Native dialog handles modal keyboard focus.
 
-Do not infer universal browser/device compatibility from Chromium coverage. Competition presentations should also be rehearsed on the actual recording machine.
+Do not infer universal browser/device compatibility from Chromium coverage. Test on the devices and browsers you plan to use.
 
 ## Standalone production verification
 
-`npm run test:e2e:production` builds the actual static bundle, serves it with Vite preview on port 4174, and runs the same browser journeys against that bundle. This catches production chunk-loading failures that development-server tests cannot detect. Rollup automatic shared-chunk handling is used; custom vendor grouping previously introduced a circular startup dependency and was removed.
+`npm run test:e2e:production` builds the actual static bundle, serves it with Vite preview on port 4174, and runs the same browser journeys against that bundle. This catches production chunk-loading failures that development-server tests cannot detect.
 
 ## GitHub Pages verification
 

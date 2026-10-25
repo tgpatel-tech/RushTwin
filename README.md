@@ -6,8 +6,7 @@
   <p>
     <a href="https://tgpatel-tech.github.io/RushTwin/">Open the app</a> ·
     <a href="https://tgpatel-tech.github.io/RushTwin/#/demo">Try the café demo</a> ·
-    <a href="SIMULATION_ENGINE.md">Explore the engine</a> ·
-    <a href="docs/SUBMISSION_GUIDE.md">Submission preparation</a>
+    <a href="SIMULATION_ENGINE.md">Explore the engine</a>
   </p>
   <p>
     <a href="https://github.com/tgpatel-tech/RushTwin/actions/workflows/pages.yml">
@@ -18,70 +17,44 @@
 
 ![RushTwin running the café simulation, with customer queues and station capacity visible](docs/images/cafe-rush.png)
 
-## What I'm working on
+RushTwin helps you test a workflow before changing it in real life. Build a setup, run a busy period, move workers, and replay the same customers to see what changes.
 
-My goal with RushTwin is to make it easier to test an operational change before trying it during a real rush. A team can have enough people overall and still get stuck at one station. I want the app to make that problem visible.
+## Try it
 
-RushTwin lets you build a workflow, run customer demand through it, change the setup, and replay the **same customers with the same arrival times**. That makes it easier to see what the change actually did.
-
-The café demo is the starting point: five workers handle ordering, drinks, food, and pickup. Move one worker from Order to Drinks, replay the rush, and compare the results. No extra worker is added.
-
-## Try it in two minutes
-
-1. Open the [Morning Café Rush demo](https://tgpatel-tech.github.io/RushTwin/#/demo).
-2. Select **Run Baseline**. Watch the queues, or choose **Max** to jump to the results.
+1. Open the [café demo](https://tgpatel-tech.github.io/RushTwin/#/demo).
+2. Select **Run Baseline**. Use **Max** to see the results sooner.
 3. Select **Test a Change → Apply Experiment**.
-4. Select **Replay Same Rush**, then **Compare the results**.
-5. Look at both improvements and tradeoffs—not just the headline wait time.
+4. Select **Replay Same Rush → Compare the results**.
 
-No account, API key, or installation is needed to try the website.
+The experiment moves one worker from Order to Drinks. Total staffing stays at five. Check both the improvements and the tradeoffs.
 
-## What the app can do
+## Features
 
-| Area | What's implemented |
-| --- | --- |
-| Workflow editor | Add, move, connect, and configure stations; change workers and processing times; undo and redo edits. |
-| Simulation | FIFO queues, limited worker capacity, variable service times, parallel tasks, and synchronized pickup. |
-| Replay | Preserve arrival times, order types, and customer-specific service randomness while changing the operation. |
-| Results | Average and P90 wait, throughput, utilization, queue history, customer details, and bottleneck evidence. |
-| Data | Import CSV arrivals, validate problematic rows, and export or import complete project configurations. |
-| Storage | Save projects locally in the browser without sending customer data to a server. |
+- Build workflows with stations, connections, workers, and service times.
+- Simulate queues and tasks that happen in parallel.
+- Replay the same demand to compare changes fairly.
+- View wait times, throughput, worker utilization, and bottlenecks.
+- Import customer arrivals from CSV.
+- Save projects in your browser and export backups.
 
-<details>
-<summary><strong>See the dashboard and scenario comparison</strong></summary>
-
-![RushTwin dashboard with project templates and the café demo](docs/images/dashboard.png)
-
-![An actual baseline and staffing-experiment comparison produced by RushTwin](docs/images/comparison.png)
-
-These screenshots show the application running its seeded demo. The numbers come from the simulation; they are not fixed values used by the interface.
-
-</details>
-
-## How the simulation works
-
-The engine runs separately from the interface. A binary min-heap selects the next event by simulation time and insertion order. Each station has a FIFO queue and can process one task per available worker.
-
-Drink and Food tasks can run in parallel. Pickup waits for every branch that the customer's order requires. Replay keeps the original demand and derives service randomness from the seed, customer ID, and station ID, so changing staffing doesn't quietly change each customer's work.
-
-The event heap, seeded generator, queues, dependency handling, replay, and metrics are application-specific code. XYFlow draws the workflow and Recharts draws the charts; neither runs the simulation.
-
-See [the engine explanation](SIMULATION_ENGINE.md) for the algorithms, formulas, and exact timing examples, or [the architecture](ARCHITECTURE.md) for a map of the code.
+![Scenario comparison](docs/images/comparison.png)
 
 ## Run locally
 
-Use **Node.js 24** and npm.
+Use Node.js 24 and npm.
 
-```bash
+```sh
 git clone https://github.com/tgpatel-tech/RushTwin.git
 cd RushTwin
 npm ci
 npm run dev
 ```
 
-Open the local address printed by Vite. No backend or environment secrets are required.
+No account, backend, or API key is needed.
 
-```bash
+## Checks
+
+```sh
 npm run lint
 npm run typecheck
 npm run test
@@ -90,38 +63,23 @@ npm run test:e2e:production
 npm run test:e2e:pages
 ```
 
-For browser tests, install Chromium with `npx playwright install chromium`, or use an existing browser through `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. The test configuration also recognizes `/usr/bin/chromium`.
+Run browser checks one at a time. See [Testing](TESTING.md) for browser setup and coverage.
 
-The test suite includes the required single-worker timing example, parallel-branch synchronization, deterministic replay, queue-area calculations, input validation, and a 1,000-customer/20-station case. [Testing details →](TESTING.md)
+## Built with
 
-## Stack
+React, TypeScript, Vite, Tailwind CSS, XYFlow, Zustand, Dexie, Recharts, Papa Parse, and Zod. The app uses its own discrete-event simulation engine. Vitest and Playwright cover testing; GitHub Actions deploys to GitHub Pages.
 
-**App:** React, TypeScript, Vite, Tailwind CSS, XYFlow, Zustand, Lucide.
-**Data and charts:** Dexie/IndexedDB, Zod, Papa Parse, Recharts.
-**Testing:** Vitest, React Testing Library, Playwright.
-**Hosting:** GitHub Pages through GitHub Actions.
+## Limits
 
-## A few important limits
+Results depend on your input assumptions. The app does not model breaks, customers leaving queues, shared workers, or cyclic workflows. Queue wait adds delays across tasks, including parallel tasks; it is different from total elapsed time.
 
-- Results depend on the entered demand, timing, and workflow assumptions. They are estimates, not guarantees about a real business.
-- Queue wait is summed across parallel tasks. It is not the same as elapsed time in the system.
-- This version does not model breaks, customers abandoning queues, shared worker pools, or cyclic workflows.
-- Projects stay in the browser where they were created. Export a `.rushtwin.json` backup before clearing storage or switching domains. Sharing a project URL does not share its saved data; the public demo works independently for each visitor.
+Projects stay in your browser. Export a `.rushtwin.json` backup before clearing storage or switching devices. A project link does not share its saved data; use the public demo or share an exported file. Exports do not include past runs.
 
 ## Documentation
 
-| Guide | What it's for |
-| --- | --- |
-| [Architecture](ARCHITECTURE.md) | Code organization and data flow |
-| [Simulation engine](SIMULATION_ENGINE.md) | Events, randomness, routing, and metric definitions |
-| [Testing](TESTING.md) | Test commands and coverage |
-| [Build status](BUILD_STATUS.md) | Implemented features and known limitations |
-| [GitHub Pages setup](deployment/GITHUB_PAGES.md) | Deployment and hosted URLs |
-| [Project explanation](COMPETITION_EXPLANATION.md) | A clear walkthrough for a reviewer |
-| [Submission guide](docs/SUBMISSION_GUIDE.md) | Preparation steps and official requirements to verify |
-| [AI usage](AI_USAGE.md) | How AI contributed to this project |
-| [Contributing](CONTRIBUTING.md) | Reporting issues and proposing changes |
-
-## Development transparency
-
-I used OpenAI Codex extensively to help generate and debug this implementation, including the engine, interface, tests, and documentation. The technical descriptions explain what the code does; they are not a claim that I wrote every part without assistance. [AI_USAGE.md](AI_USAGE.md) records the scope of that assistance and separates automated checks from personal review.
+- [Architecture](ARCHITECTURE.md)
+- [Simulation engine](SIMULATION_ENGINE.md)
+- [Testing](TESTING.md)
+- [Hosting](deployment/README.md)
+- [AI usage](AI_USAGE.md)
+- [Contributing](CONTRIBUTING.md)
