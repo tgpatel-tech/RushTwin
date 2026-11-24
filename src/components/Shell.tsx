@@ -18,14 +18,14 @@ export function Shell() {
   const inProject =
     location.pathname.startsWith("/project/") || location.pathname === "/demo";
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${inProject ? "editor-shell" : ""}`}>
       <aside className="sidebar">
         <NavLink to="/" aria-label="RushTwin home">
-          <Logo />
+          <Logo /><span className="brand-label">RushTwin<small>Operations lab</small></span>
         </NavLink>
         <nav>
           <NavLink to="/" title="Dashboard" aria-label="Dashboard" end>
-            <LayoutDashboard />
+            <LayoutDashboard /><span>Overview</span>
           </NavLink>
           <NavLink
             to="/?view=projects"
@@ -33,17 +33,17 @@ export function Shell() {
             aria-label="Projects"
             className="project-nav"
           >
-            <FolderOpen />
+            <FolderOpen /><span>Simulations</span>
           </NavLink>
           <NavLink to="/demo" title="Demo rush" aria-label="Demo rush">
-            <FlaskConical />
+            <FlaskConical /><span>Café experiment</span>
           </NavLink>
           <NavLink
             to="/how-it-works"
             title="How it works"
             aria-label="How it works"
           >
-            <BookOpen />
+            <BookOpen /><span>How it works</span>
           </NavLink>
         </nav>
         <NavLink
@@ -52,7 +52,7 @@ export function Shell() {
           aria-label="About and privacy"
           className="sidebar-bottom"
         >
-          <HelpCircle />
+          <HelpCircle /><span>About & privacy</span>
         </NavLink>
       </aside>
       <div className="app-body">
