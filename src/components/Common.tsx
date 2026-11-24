@@ -58,24 +58,24 @@ export function MiniFlow({ large = false }: { large?: boolean }) {
     >
       <div className="mini-node">
         <Users />
-        <span>ORDER</span>
+        <span>Order</span>
       </div>
       <ArrowRight />
       <div className="mini-branch">
         <div className="mini-node accent">
           <Coffee />
-          <span>DRINKS</span>
+          <span>Drinks</span>
           <i className="mini-dots">•••••</i>
         </div>
         <div className="mini-node">
           <Utensils />
-          <span>FOOD</span>
+          <span>Food</span>
         </div>
       </div>
       <ArrowRight />
       <div className="mini-node">
         <Check />
-        <span>PICKUP</span>
+        <span>Pickup</span>
       </div>
     </div>
   );

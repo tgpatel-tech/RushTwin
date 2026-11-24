@@ -197,7 +197,7 @@ function ProjectEditor({ demo }: { demo: boolean }) {
       {demo && (
         <div className="demo-banner">
           <div>
-            <span className="eyebrow">MORNING CAFÉ RUSH</span>
+            <span className="eyebrow">Morning café rush</span>
             <h1>Can the same team handle the same rush more efficiently?</h1>
           </div>
           <div className="demo-steps">

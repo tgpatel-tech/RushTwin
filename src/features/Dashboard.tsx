@@ -78,7 +78,7 @@ export function Dashboard() {
     <main className="dashboard page">
       <div className="page-heading">
         <div>
-          <div className="eyebrow">YOUR OPERATIONS LAB</div>
+          <div className="eyebrow">Your operations lab</div>
           <h1>Test the rush before it happens.</h1>
           <p>Build your workflow. Run the rush. Find a better way.</p>
         </div>
@@ -97,7 +97,7 @@ export function Dashboard() {
         <div className="feature-copy">
           <span className="badge blue">
             <span className="status-dot" />
-            FEATURED DEMO
+            Featured demo
           </span>
           <h2>Morning Café Rush</h2>
           <p>
@@ -118,7 +118,7 @@ export function Dashboard() {
         </div>
         <div className="feature-visual">
           <div className="flow-kicker">
-            <span className="status-dot" />A SMALL CHANGE. A DIFFERENT OUTCOME.
+            <span className="status-dot" />A small change. A different outcome.
           </div>
           <MiniFlow large />
           <div className="flow-caption">
@@ -270,7 +270,7 @@ export function Dashboard() {
             <h2>Start from a template</h2>
             <p>A starting point for the way your operation works.</p>
           </div>
-          <span className="subtle-label">MAKE IT YOUR OWN</span>
+          <span className="subtle-label">Make it your own</span>
         </div>
         <div className="template-grid">
           {templateNames.map((t, i) => {

@@ -124,7 +124,7 @@ export function Compare() {
       </Link>
       <div className="page-heading">
         <div>
-          <div className="eyebrow">THE SAME RUSH. A DIFFERENT SETUP.</div>
+          <div className="eyebrow">The same rush. A different setup.</div>
           <h1>Compare scenarios</h1>
           <p>See what changed. Understand the tradeoffs.</p>
         </div>

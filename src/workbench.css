@@ -1,0 +1,104 @@
+/* Visual polish guided by unslop by Damir Sokolovsky, CC BY 4.0.
+   https://heydamir.design/unslop */
+:root { --muted: #525d6d; --border: #dfe4eb; font-variant-numeric: tabular-nums; }
+button, .button, input, select { border-radius: 8px; }
+button, .button { font-size: 13px; gap: 8px; }
+h1, h2, h3 { font-weight: 500; }
+h1 { font-size: 30px; line-height: 1.2; letter-spacing: -.6px; }
+h2 { letter-spacing: 0; }
+small { font-size: 12px; }
+.page { padding: 40px; }
+.page-heading { gap: 24px; margin-bottom: 32px; }
+.page-heading p { font-size: 14px; line-height: 1.6; margin-top: 12px; }
+.eyebrow, .subtle-label, .flow-kicker, .feature-copy .badge {
+  font-size: 12px; letter-spacing: 0; font-weight: 500; color: var(--muted);
+}
+.eyebrow { margin-bottom: 12px; }
+.sidebar nav { gap: 8px; }
+.sidebar nav a, .sidebar-bottom { color: #657083; }
+.sidebar nav svg, .sidebar-bottom svg { width: 18px; height: 18px; stroke-width: 1.5; }
+.featured { border-radius: 16px; box-shadow: none; margin-bottom: 40px; }
+.feature-copy { padding: 32px; }
+.feature-copy h2 { font-size: 28px; line-height: 1.2; margin: 20px 0 12px; letter-spacing: -.5px; }
+.feature-copy p { font-size: 14px; }
+.feature-copy .actions { margin-top: 24px; gap: 24px; }
+.feature-copy .badge { background: transparent; padding: 0; color: var(--blue); }
+.feature-visual { padding: 32px; background-image: none; background-color: #f8f9fc; }
+.flow-kicker { color: #59677a; }
+.mini-node { border-radius: 8px; box-shadow: none; padding: 16px 12px; gap: 8px; }
+.mini-node span { font-size: 11px; letter-spacing: 0; font-weight: 500; }
+.mini-node svg { width: 18px; height: 18px; stroke-width: 1.5; }
+.mini-node.accent { background: #edf2ff; border-color: #afc0f2; }
+.mini-branch { gap: 16px; }
+.flow-caption { color: #637085; font-size: 12px; gap: 24px; }
+.section-heading { gap: 24px; margin-bottom: 20px; }
+.section-heading h2 { font-size: 20px; letter-spacing: 0; }
+.section-heading p { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.count { background: transparent; font-size: 12px; color: var(--muted); }
+.search input { font-size: 13px; }
+.project-card { border-radius: 12px; }
+.project-card > a { padding: 24px; }
+.project-card:hover, .template-card:hover { transform: none; border-color: #9cafd7; }
+.project-card h3 { font-size: 16px; }
+.project-card p, .project-empty p { font-size: 13px; }
+.project-empty { padding: 24px; gap: 16px; border-radius: 12px; }
+.project-empty h3 { font-size: 16px; }
+.card-foot, .card-foot .badge { font-size: 12px; color: #626e80; }
+.card-tools { top: 24px; right: 44px; }
+.card-tools button { color: #657083; }
+.template-grid { gap: 16px; }
+.template-card { padding: 24px 20px 0; border-radius: 12px; }
+.template-card h3 { font-size: 15px; }
+.template-card p { font-size: 13px; color: var(--muted); min-height: 48px; }
+.template-icon { background: #f1f3f6; color: #667488; }
+.template-icon svg { width: 18px; height: 18px; stroke-width: 1.5; }
+.template-bottom { font-size: 12px; color: #626e80; margin-top: 16px; padding: 16px 0; }
+.dashboard-footer { font-size: 12px; color: #626e80; gap: 16px; }
+.save-status { font-size: 12px; color: #626e80; }
+.actions a:not(.button), .text-link { font-size: 13px; }
+.surface, .comparison-hero { border-radius: 12px; }
+.comparison-hero h2, .metric strong { font-weight: 500; font-variant-numeric: tabular-nums; }
+.comparison-hero p, .comparison-delta small { color: #626e80; font-size: 12px; }
+.compare-selectors { gap: 24px; }
+th, td { font-size: 12px; padding: 12px 16px; }
+th { color: #526075; }
+.diff-row small { font-size: 12px; color: #626e80; }
+.inspector h3 { font-size: 12px; letter-spacing: 0; }
+.inspector label, .inspector input, .inspector select { font-size: 13px; }
+.inspector section { padding-block: 20px; }
+.panel-note, .interval-labels, .inspector .mix-row { font-size: 12px; }
+.demo-banner .eyebrow { font-size: 12px; letter-spacing: 0; }
+.canvas-legend { font-size: 11px; color: #626e80; }
+.node-state { letter-spacing: 0; }
+button, .button, .project-card { transition: background-color 160ms ease-out, border-color 160ms ease-out, color 160ms ease-out; }
+@media (max-width: 1199px) {
+ .page { padding: 32px 24px; }
+ .feature-copy, .feature-visual { padding: 24px; }
+ .template-card { padding: 20px 16px 0; }
+}
+@media (max-width: 767px) {
+ .page { padding: 24px 16px; }
+ .page-heading h1 { font-size: 28px; line-height: 1.2; letter-spacing: -.5px; }
+ .page-heading p, .feature-copy p { font-size: 13px; }
+ .feature-copy { padding: 24px; }
+ .feature-copy h2 { font-size: 24px; }
+ .feature-visual { padding: 20px 12px; }
+ .flow-kicker, .flow-caption { font-size: 11px; }
+ .section-heading h2 { font-size: 18px; }
+ .section-heading p, .template-card p, .template-bottom { font-size: 12px; }
+ .template-card h3 { font-size: 14px; }
+ .template-card { padding: 16px 12px 0; }
+ .template-card p { min-height: 64px; }
+ .project-card > a { padding: 20px; }
+ .card-tools { top: 20px; }
+ .dashboard-footer { font-size: 11px; line-height: 1.6; }
+ .save-status { font-size: 10px; }
+ .panel-note, .metric > span { font-size: 11px; }
+ .comparison-hero { padding: 24px 12px; gap: 8px; }
+ .comparison-hero h2 { font-size: 22px; }
+ .comparison-hero p, .comparison-delta small, .comparison-delta span { font-size: 11px; }
+ th, td { font-size: 11px; padding: 12px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ *, *::before, *::after { transition: none !important; animation: none !important; }
+}

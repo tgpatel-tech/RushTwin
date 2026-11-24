@@ -13,7 +13,7 @@ export function Info({ about = false }: { about?: boolean }) {
   return (
     <main className="page info-page">
       <div className="eyebrow">
-        {about ? "PURPOSE, PRIVACY & LIMITATIONS" : "INSIDE THE SIMULATION"}
+        {about ? "Purpose, privacy & limitations" : "Inside the simulation"}
       </div>
       <h1>
         {about
